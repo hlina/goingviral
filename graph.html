@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="">
+
+    <meta name="author" content="">
+
+    <link rel="icon" href="../../favicon.ico">
+
+
+
+    <title></title>
+
+
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <!-- Custom styles for this template -->
+
+    <link href="starter-template.css" rel="stylesheet">
+
+
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
+
+
+
+  <!-- graph code begins here-->
+
+  <script type="text/javascript" src="jquery.js"></script>
+
+  <script type="text/javascript" src="chart.js"></script>
+
+  <script src="graphs.js"></script>
+
+  <link href="graph.css" rel="stylesheet">
+
+  </head>
+
+
+
+  <body>
+
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+      <div class="container">
+
+        <div class="navbar-header">
+
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+
+            <span class="sr-only">Toggle navigation</span>
+
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+
+          </button>
+
+          <a class="navbar-brand" href="goingViral.html">Going Viral</a>
+
+        </div>
+
+        <div id="navbar" class="collapse navbar-collapse">
+
+          <ul class="nav navbar-nav">
+            <li><a href="graphs.html">All Flu Data</a></li>
+            <li><a href="graph.html">Cities Flu Data</a></li>
+            <li><a href="graph2.html">Influential Cities</a></li>
+            <li><a href="graph4.html">Resource Allocation</a></li>
+          </ul>
+
+        </div><!--/.nav-collapse -->
+
+      </div>
+
+    </nav>
+
+<div class="container">
+
+<div id = "graphs">
+
+<p>Pick a city and year to see the flu trends at that time. Then click graph.</p>
+
+<p>Location
+
+<select id = "place">
+<option value = 'Albany, NY"'>Albany, NY"</option>
+<option value = 'Arlington, VA"'>Arlington, VA"</option>
+<option value = 'Atlanta, GA"'>Atlanta, GA"</option>
+<option value = 'Austin, TX"'>Austin, TX"</option>
+<option value = 'Baltimore, MD"'>Baltimore, MD"</option>
+<option value = 'Birmingham, AL"'>Birmingham, AL"</option>
+<option value = 'Boston, MA"'>Boston, MA"</option>
+<option value = 'Charlotte, NC"'>Charlotte, NC"</option>
+<option value = 'Chicago, IL"'>Chicago, IL"</option>
+<option value = 'Cleveland, OH"'>Cleveland, OH"</option>
+<option value = 'Columbus, OH"'>Columbus, OH"</option>
+<option value = 'Dallas, TX"'>Dallas, TX"</option>
+<option value = 'Denver, CO"'>Denver, CO"</option>
+<option value = 'Durham, NC"'>Durham, NC"</option>
+<option value = 'Honolulu, HI"'>Honolulu, HI"</option>
+<option value = 'Houston, TX"'>Houston, TX"</option>
+<option value = 'Indianapolis, IN"'>Indianapolis, IN"</option>
+<option value = 'Irving, TX"'>Irving, TX"</option>
+<option value = 'Kansas City, MO"'>Kansas City, MO"</option>
+<option value = 'Las Vegas, NV"'>Las Vegas, NV"</option>
+<option value = 'Los Angeles, CA"'>Los Angeles, CA"</option>
+<option value = 'Madison, WI"'>Madison, WI"</option>
+<option value = 'Miami, FL"'>Miami, FL"</option>
+<option value = 'Nashville, TN"'>Nashville, TN"</option>
+<option value = 'New Orleans, LA"'>New Orleans, LA"</option>
+<option value = 'New York, NY"'>New York, NY"</option>
+<option value = 'Newark, NJ"'>Newark, NJ"</option>
+<option value = 'Norfolk, VA"'>Norfolk, VA"</option>
+<option value = 'Oakland, CA"'>Oakland, CA"</option>
+<option value = 'Oklahoma City, OK"'>Oklahoma City, OK"</option>
+<option value = 'Omaha, NE"'>Omaha, NE"</option>
+<option value = 'Orlando, FL"'>Orlando, FL"</option>
+<option value = 'Philadelphia, PA"'>Philadelphia, PA"</option>
+<option value = 'Phoenix, AZ"'>Phoenix, AZ"</option>
+<option value = 'Pittsburgh, PA"'>Pittsburgh, PA"</option>
+<option value = 'Portland, OR"'>Portland, OR"</option>
+<option value = 'Raleigh, NC"'>Raleigh, NC"</option>
+<option value = 'Richmond, VA"'>Richmond, VA"</option>
+<option value = 'Rochester, NY"'>Rochester, NY"</option>
+<option value = 'Sacramento, CA"'>Sacramento, CA"</option>
+<option value = 'Salt Lake City, UT"'>Salt Lake City, UT"</option>
+<option value = 'San Antonio, TX"'>San Antonio, TX"</option>
+<option value = 'San Diego, CA"'>San Diego, CA"</option>
+<option value = 'San Francisco, CA"'>San Francisco, CA"</option>
+<option value = 'San Jose, CA"'>San Jose, CA"</option>
+<option value = 'Santa Clara, CA"'>Santa Clara, CA"</option>
+<option value = 'Seattle, WA"'>Seattle, WA"</option>
+<option value = 'Somerville, MA"'>Somerville, MA"</option>
+<option value = 'St Louis, MO"'>St Louis, MO"</option>
+<option value = 'St Paul, MN"'>St Paul, MN"</option>
+<option value = 'Sunnyvale, CA"'>Sunnyvale, CA"</option>
+<option value = 'Tampa, FL"'>Tampa, FL"</option>
+<option value = 'Tempe, AZ"'>Tempe, AZ"</option>
+<option value = 'Tucson, AZ"'>Tucson, AZ"</option>
+<option value = 'Tulsa, OK"'>Tulsa, OK"</option>
+<option value = 'Washington, DC"'>Washington, DC"</option>
+</select></p>
+
+<p>Year
+
+<select id = "year">
+
+<option value = '2003'>2003</option>
+
+<option value = '2004'>2004</option>
+
+<option value = '2005'>2005</option>
+
+<option value = '2006'>2006</option>
+
+<option value = '2007'>2007</option>
+
+<option value = '2008'>2008</option>
+
+<option value = '2009'>2009</option>
+
+<option value = '2010'>2010</option>
+
+<option value = '2011'>2011</option>
+
+<option value = '2012'>2012</option>
+
+<option value = '2013'>2013</option>
+
+<option value = '2014'>2014</option>
+
+<option value = '2015'>2015</option>
+
+</select></p>
+
+<button id="myBtn">Graph</button>
+
+<button id="clear">Clear</button><br>
+
+<p>Flu Trends Across Time</p>
+
+<canvas id = "myChart" width = "900" height = "600"></canvas>
+
+<div id = "js-legend" class = "chart-legend"></div>
+
+<div>
+
+</div>
+
+    <!-- Bootstrap core JavaScript
+
+    ================================================== -->
+
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+
+  </body>
+
+</html>
+
+
+
+<!-- graph code ends here-->
