@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-# import mylibrary
 app = Flask(__name__)
 
 results = []
 
 
-@app.route("/home")
+@app.route("/")
 def home():
   return render_template('goingViral.html')
 
@@ -40,4 +39,4 @@ def show_results(result_id):
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 if __name__ == '__main__':
-  app.run(debug = True)
+  app.run(debug=True)
