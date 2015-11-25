@@ -10,22 +10,22 @@ def home():
   return render_template('goingViral.html')
 
 @app.route("/all_data")
-def data():
+def all():
   return render_template('graphs.html')
 
 @app.route("/city_data")
-def data():
+def city():
   return render_template('graph.html')
 
 @app.route("/heat_map")
-def data():
+def map():
   return render_template('graph2.html')
 
 def perform_optimization(name):
   return "Viruses are coming! Watch out " + name + "!"
 
-@app.route("/forms", methods=['GET', 'POST'])
-def form():
+@app.route("/optimization", methods=['GET', 'POST'])
+def optimization():
   if request.method == 'POST':
     results.append(perform_optimization(request.form['name']))
     return redirect(url_for('show_results', result_id=len(results) - 1))
@@ -40,4 +40,4 @@ def show_results(result_id):
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 if __name__ == '__main__':
-  app.run()
+  app.run(debug = True)

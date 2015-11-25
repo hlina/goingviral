@@ -12,19 +12,19 @@
     <title></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="starter-template.css" rel="stylesheet">
+    <link href= "{{ url_for('static', filename='starter-template.css') }}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/ie-emulation-modes-warning.js') }}"></script>
 
   <!-- graph code begins here-->
-  <script type="text/javascript" src="jquery.js"></script>
-  <script type="text/javascript" src="chart.js"></script>
-  <link href="graph.css" rel="stylesheet">
+  <script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='chart.js') }}"></script>
+  <link href="{{ url_for('static', filename='graph.css') }}" rel="stylesheet">
   </head>
 
   <body>
@@ -38,14 +38,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="goingViral.html">Going Viral</a>
+          <a class="navbar-brand" href="home">Going Viral</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="graphs.html">All Flu Data</a></li>
-            <li><a href="graph.html">Cities Flu Data</a></li>
-            <li><a href="graph2.html">Influential Cities</a></li>
-            <li><a href="graph4.html">Resource Allocation</a></li>
+            <li><a href="all_data">All Flu Data</a></li>
+            <li><a href="city_data">Cities Flu Data</a></li>
+            <li><a href="heat_map">Influential Cities</a></li>
+            <li><a href="optimization">Resource Allocation</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -225,9 +225,9 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src= "{{ url_for('static', filename='assets/js/ie10-viewport-bug-workaround.js') }}"></script>
   </body>
 </html>
 
