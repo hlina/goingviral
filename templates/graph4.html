@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href= "{{ url_for('static', filename='starter-template.css') }}" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="{{ url_for('static', filename='assets/js/ie-emulation-modes-warning.js') }}"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="co>
+llapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="goingViral.html">Going Viral</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="graphs.html">All Flu Data</a></li>
+            <li><a href="graph.html">Cities Flu Data</a></li>
+            <li><a href="graph2.html">Influential Cities</a></li>
+            <li><a href="graph4.html">Resource Allocation</a></li>
+          </ul        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">   
+          <h3>Input a budget amount in dollars:</h3>   
+		  <form action="" method="post">
+			<div>
+			    <label for="budget">Budget:</label>
+			    <input type="text" id="budget" name="budget" /><br>
+			    <label for="year">Choose a year:</label>
+				<select id = "year" name = "year">
+				<option value = '2003'>2003</option>
+				<option value = '2004'>2004</option>
+				<option value = '2005'>2005</option>
+				<option value = '2006'>2006</option>
+				<option value = '2007'>2007</option>
+				<option value = '2008'>2008</option>
+				<option value = '2009'>2009</option>
+				<option value = '2010'>2010</option>
+				<option value = '2011'>2011</option>
+				<option value = '2012'>2012</option>
+				<option value = '2013'>2013</option>
+				<option value = '2014'>2014</option>
+				<option value = '2015'>2015</option>
+				</select>
+			</div>
+			    <button type="submit">Submit</button>
+		  </form>
+          <h3>Choose a network of cities:</h3>
+          <h4>Northeast</h4>
+          <INPUT TYPE="radio" NAME="smallModel" ID="1" >Baltimore, Boston, New York, Philadelphia, Pittsburgh, Richmond, Washington<br>
+          <h4>West</h4>          
+          <INPUT TYPE="radio" NAME="smallModel" ID="2" >Las Vegas,Los Angeles,Salt Lake City,San Francisco,Seattle<br>
+          <h4>South</h4>
+          <INPUT TYPE="radio" NAME="smallModel" ID="3" >Austin,Birmingham,Charlotte,Denver,Nashville<br>
+          <br><br>
+          <div class = "results"> </div><br>
+          <div class = "cityGraphs"></div>
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src= "{{ url_for('static', filename='assets/js/ie10-viewport-bug-workaround.js') }}"></script>
+    <script src="{{ url_for('static', filename='chart.js') }}"></script>
+  </body>
+</html>
+

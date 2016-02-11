@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
+import matlab.engine
+
 app = Flask(__name__)
 
 results = []
@@ -20,16 +22,18 @@ def city():
 def map():
   return render_template('graph2.html')
 
-def perform_optimization(name):
-  return "Viruses are coming! Watch out " + name + "!"
+def perform_optimization(budget, year):
+  eng = matlab.engine.start_matlab()
+  answer = eng.test_robust_allocation(float(budget), nargout = 3)
+  return answer
 
 @app.route("/optimization", methods=['GET', 'POST'])
 def optimization():
   if request.method == 'POST':
-    results.append(perform_optimization(request.form['name']))
-    return redirect(url_for('show_results', result_id=len(results) - 1))
+    results.append(perform_optimization(request.form['budget'], request.form['year']))
+    return redirect(url_for('show_results', result_id=len(results)-1))
   else:
-    return render_template('forms.html')
+    return render_template('graph4.html')
 
 @app.route("/optimize/<int:result_id>")
 def show_results(result_id):
