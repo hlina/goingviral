@@ -16,6 +16,7 @@
 
     <!-- Custom styles for this template -->
     <link href= "{{ url_for('static', filename='starter-template.css') }}" rel="stylesheet">
+    <link href= "{{ url_for('static', filename='graph.css') }}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -55,7 +56,7 @@ llapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
     <div class="container">
 
       <div class="starter-template">
-      	 <h1>Allocation for {{data[3]}} with Budget Total: {{data[4]}}</h1>
+      	 <h4>Allocation for {{data[3]}} with Budget Total: {{data[4]}}</h4>
 		 <div class = "results"></div><br>
 		 <button id = "graph">Graph</button>
 		 <div class = "cityGraphs"></div>
@@ -216,7 +217,7 @@ $(document).ready(function(){
 	      pointDot : false,
 	    };
 	    var myLineChart = new Chart(ctx).Line(data, options);
-	    document.getElementById('js-legend').innerHTML = myLineChart.generateLegend();
+      document.getElementById('js-legend').innerHTML = myLineChart.generateLegend();
 	}
 });
 </script>
