@@ -1,4 +1,6 @@
-function [delta, lambda, g] = robust_allocation_exp_v6(obs_data, Vs, C, delta_lim, T, start, network)
+function [delta, lambda, g] = model2(obs_data, Vs, C, delta_lim, T, start, network)
+disp(network);
+%west is 2, south is 1, and ne is 0 
 
 % Observation uncertainty set is derived from AM-GM inequality
 % Compared to v4: Added the set of observable sensors Vs (e.g. [1 3 4])
@@ -11,6 +13,7 @@ A_ub = obs_data.A_ub; % refers to betaIJ, something we need to guess
 delta_c_nat = obs_data.delta_c;  % <nx1 double>
 n = obs_data.n;
 p = obs_data.p;
+
 assert(size(delta_lim,1) == n); % checking to see if thing inside () is true, if not it stops the program
 assert(size(delta_lim,2) == 2); % 2 because upper and lower bound
 
@@ -74,20 +77,24 @@ for i = 1:n
 end
 
 max_num_constr = max(num_constr);
-
 if (network == 0)
-	p = [622,646,8406,1553,306,214,659];
+    disp('here');
+	z = [622,646,8406,1553,306,214,659];
 	Cmax = 60000000;
 elseif (network == 1)
-	p = [885, 212, 793, 1258, 659];
+    disp('here');
+	z = [885, 212, 793, 1258, 659];
 	Cmax = 18000000;
 else 
-	p = [604,3884,192, 837, 652];
+    disp('here');
+	z = [604,3884,192, 837, 652];
 	Cmax = 30000000;
 end
 P = sum(z);
+%Cmax = P*0.3*16*1000;
 
-disp(Cmax)
+disp(z);
+disp(Cmax);
 
 cvx_begin 
     cvx_solver mosek
@@ -97,9 +104,7 @@ cvx_begin
         if abs(delta_lim(i,1) - delta_lim(i,2)) < 1e-6
             g(i) = 0;
         else
-            g(i) = (exp(-delta2(i)) - 1/delta_lim(i,2))/(1/delta_lim(i,1) - 1/delta_lim(i,2)) * (p(i)/P)*Cmax;
-            %each city's budget allocation should range from 0 to its
-            %pop-proportional portion of the Cmax
+            g(i) = (exp(-delta2(i)) - 1/delta_lim(i,2))/(1/delta_lim(i,1) - 1/delta_lim(i,2)) * (z(i)/P)*Cmax;
         end
     end
     minimize( exp(lambda2) )
@@ -110,35 +115,14 @@ cvx_begin
             F{i}' * nu(1:num_constr(i),i) + exp(u2 - u2(i) - lambda2) <= 0;
             G{i}' * nu(1:num_constr(i),i) <= v(i);
 
-            delta2(i) >= log(delta_lim(i,1)); %c upper bound on recovery rate
-            delta2(i) <= log(delta_lim(i,2)); %c lower bound on the recovery rate
-        end
-        sum(g) <= C;        
+            delta2(i) >= log(delta_lim(i,1));
+            delta2(i) <= log(delta_lim(i,2));            
+        end       
         nu >= 0;
+        sum(g) <= C;         
         
 cvx_end
-
-% recompute g after running CVX
-    for i = 1:n
-        if abs(delta_lim(i,1) - delta_lim(i,2)) < 1e-6
-            g(i) = 0;
-        else
-           g(i) = subplus((delta_lim(i,2) - exp(delta2(i))*delta_lim(i,1)))/((delta_lim(i,2) - delta_lim(i,1))*exp(delta2(i,1))*(p(i)/P)*Cmax);
-        end
-    end
-%     end of recomputation
-
-
 delta = exp(delta2);
 lambda = exp(lambda2);
 
-
-
-% if DEBUG    % for debug only
-%     data = load('data/epidemic_dis_01.mat');
-%     W = diag(data.beta)*data.A;
-%     w = W(1,:)';
-%     
-%     keyboard;
-% end
 

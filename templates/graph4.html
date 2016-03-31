@@ -9,17 +9,19 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title></title>
+    <title>Going Viral</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href= "{{ url_for('static', filename='starter-template.css') }}" rel="stylesheet">
+    <link href= "{{ url_for('static', filename='carousel.css') }}" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="{{ url_for('static', filename='assets/js/ie-emulation-modes-warning.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -30,59 +32,66 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-wrapper">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="co>
-llapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="goingViral.html">Going Viral</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="graphs.html">All Flu Data</a></li>
-            <li><a href="graph.html">Cities Flu Data</a></li>
-            <li><a href="graph2.html">Influential Cities</a></li>
-            <li><a href="graph4.html">Resource Allocation</a></li>
-          </ul        </div><!--/.nav-collapse -->
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            <a class="navbar-brand" href="/"><strong>Going Viral</strong></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="city_data">Flu Data by City</a></li>
+                <li><a href="heat_map">Heat Map</a></li>
+                <li><a href="optimization">Resource Allocation</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       </div>
-    </nav>
+    </div>
 
-    <div class="container">
+    <div class="container marketing">
+      <h1>Nav Bar</h1>
+      <br><br>
+      <p><strong>Instructions:</strong> Input a budget of your choosing into the Budget box. Then select a “Flu Season” to look at, as well as a particular region (Northeast, South, or West). Next press “Submit.” After you press submit it will show the budget allocation to each city. Then you can select particular cities in the region to graph the resource allocation model which shows the impact of resources on the number of people infected. The optimal the range for budget you can input for each network is $1M-$12M, $5-$10M, and $9M-$16M for the Northeast, South, and West respectively.<br><br>
 
-      <div class="starter-template">   
+<strong>Understanding Results:</strong>  The Resource Allocation model allocated your inputted budget amongst the city in the specified region.  As well as giving the budget breakdown, it also specifies the improved recovery rate in a city as a result of the budget allocation, the natural recovery rates of each city, the number of lives saved per city, and the cost per life saved. When you graph a particular city in the network, the graph shows the number of people infected without (in red) and with (in blue) the resource allocation.  The resource allocation occurs at the peak of the average flu season.</p>
+      <center>   
           <h3>Input a budget amount in dollars:</h3>   
 		  <form action="" method="post">
 			<div>
 			    <label for="budget">Budget:</label>
 			    <input type="text" id="budget" name="budget" /><br>
-			    <label for="year">Choose a year:</label>
+          <div id = "suggestion"></div>
+			    <label for="year">Choose a flu season:</label>
 				<select id = "year" name = "year">
-				<option value = '2003'>2003</option>
-				<option value = '2004'>2004</option>
-				<option value = '2005'>2005</option>
-				<option value = '2006'>2006</option>
-				<option value = '2007'>2007</option>
-				<option value = '2008'>2008</option>
-				<option value = '2009'>2009</option>
-				<option value = '2010'>2010</option>
-				<option value = '2011'>2011</option>
-				<option value = '2012'>2012</option>
-				<option value = '2013'>2013</option>
-				<option value = '2014'>2014</option>
-				<option value = '2015'>2015</option>
+				<option value = '2004'>2004-2005</option>
+				<option value = '2005'>2005-2006</option>
+				<option value = '2006'>2006-2007</option>
+				<option value = '2007'>2007-2008</option>
+				<option value = '2008'>2008-2009</option>
+				<option value = '2009'>2009-2010</option>
+				<option value = '2010'>2010-2011</option>
+				<option value = '2011'>2011-2012</option>
+				<option value = '2012'>2012-2013</option>
+				<option value = '2013'>2013-2014</option>
+				<option value = '2014'>2014-2015</option>
 				</select>
          <h3>Choose a network of cities:</h3>
           <h4>Northeast</h4>
-          <INPUT TYPE="radio" NAME="smallModel" ID="1" value = "our_model_NE.mat">Baltimore, Boston, New York, Philadelphia, Pittsburgh, Richmond, Washington<br>
-          <h4>West</h4>          
-          <INPUT TYPE="radio" NAME="smallModel" ID="2" value = "our_model_south.mat">Las Vegas,Los Angeles,Salt Lake City,San Francisco,Seattle<br>
+          <INPUT TYPE="radio" NAME="smallModel" onclick="handleClick(this);" ID="1" value = "our_model_NE.mat">Baltimore, Boston, New York, Philadelphia, Pittsburgh, Richmond, Washington<br>
           <h4>South</h4>
-          <INPUT TYPE="radio" NAME="smallModel" ID="3" value = "our_model_west.mat">Austin,Birmingham,Charlotte,Denver,Nashville<br>
+          <INPUT TYPE="radio" NAME="smallModel" onclick="handleClick(this);" ID="3" value = "our_model_south.mat">Austin,Birmingham,Charlotte,Denver,Nashville<br>
+          <h4>West</h4>          
+          <INPUT TYPE="radio" NAME="smallModel" onclick="handleClick(this);" ID="2" value = "our_model_west.mat">Las Vegas,Los Angeles,Salt Lake City,San Francisco,Seattle<br>
           <br><br>
 			</div>
 			    <button type="submit">Submit</button>
@@ -91,9 +100,23 @@ llapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <div class = "cityGraphs"></div>
       </div>
 
-    </div><!-- /.container -->
+    </center><!-- /.container -->
+  </div>
 
-
+  <script type="text/javascript">
+    function handleClick(myRadio) {
+        $('#suggestion').empty();
+        if (document.getElementById('1').checked == true) {
+          $('#suggestion').append("<p>Suggested budget: $1M-$12M</p>");
+        }
+        else if (document.getElementById('3').checked == true) {
+          $('#suggestion').append("<p>Suggested budget: $5M-$10M</p>");
+        }
+        else {
+          $('#suggestion').append("<p>Suggested budget: $9M-$16M</p>");
+        }
+      }
+  </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

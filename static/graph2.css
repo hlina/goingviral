@@ -10,9 +10,9 @@
 }
 
 #js-legend {
-    position: relative;
-    top: -490px;
-    margin-left: 85%;
+    position: absolute;
+    top: 620px;
+    margin-left: 870px
 }
 
 .box {

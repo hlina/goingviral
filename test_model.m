@@ -1,4 +1,4 @@
-function  [delta_rob, lambda_rob, g_rob] = test_robust_allocation(C, index, file)
+function [delta_rob, lambda_rob, cost] = test_model(C, i, file, network)
 
 data = load(file);
 
@@ -10,9 +10,12 @@ obs_data.n = n;  % Number of nodes
 obs_data.p = data.p;   % Observations
 obs_data.A_z = (data.A == 0);   % Zero entries in A (prior knowledge)
 
-delta_lim = [0.05*ones(n,1), data.delta_c];   % Bounds for recovery rates
-budget = C; % total budget
+delta_lim = [0.1*ones(n,1), data.delta_c];   % Bounds for recovery rates
+
 start = [45,98,150,202,254,306,358,411,463,515,567];
-T = [97,149,201,253,305,357,410,462,514,566,618];
-[delta_rob, lambda_rob, g_rob] = robust_allocation_exp_v6(obs_data, 1:n, budget, delta_lim, T(1,index), start(1,index));    
+ended = [97,149,201,253,305,357,410,462,514,566,618];
+[delta_rob, lambda_rob, cost] = robust_allocation_exp_v6(obs_data, 1:n, C, delta_lim, ended(1,i), start(1,i), network);
+
+display(1-delta_rob);
+display(cost);
 

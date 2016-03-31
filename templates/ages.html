@@ -1,0 +1,81 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
+
+<h3>Distributions</h3>
+<p>Data taken from US Census Data</p>
+
+<select id = "place">
+<option value = 'Albany'>Albany, NY</option>
+<option value = 'Arlington'>Arlington, VA</option>
+<option value = 'Atlanta'>Atlanta, GA</option>
+<option value = 'Austin'>Austin, TX</option>
+<option value = 'Baltimore'>Baltimore, MD</option>
+<option value = 'Birmingham'>Birmingham, AL</option>
+<option value = 'Boston'>Boston, MA</option>
+<option value = 'Charlotte'>Charlotte, NC</option>
+<option value = 'Chicago'>Chicago, IL</option>
+<option value = 'Cleveland'>Cleveland, OH</option>
+<option value = 'Columbus'>Columbus, OH</option>
+<option value = 'Dallas'>Dallas, TX</option>
+<option value = 'Denver'>Denver, CO</option>
+<option value = 'Durham'>Durham, NC</option>
+<option value = 'Honolulu'>Honolulu, HI</option>
+<option value = 'Houston'>Houston, TX</option>
+<option value = 'Indianapolis'>Indianapolis, IN</option>
+<option value = 'Irving'>Irving, TX</option>
+<option value = 'Kansas City'>Kansas City, MO</option>
+<option value = 'Las Vegas'>Las Vegas, NV</option>
+<option value = 'Los Angeles'>Los Angeles, CA</option>
+<option value = 'Madison'>Madison, WI</option>
+<option value = 'Miami'>Miami, FL</option>
+<option value = 'Nashville'>Nashville, TN</option>
+<option value = 'New Orleans'>New Orleans, LA</option>
+<option value = 'New York'>New York, NY</option>
+<option value = 'Newark'>Newark, NJ</option>
+<option value = 'Norfolk'>Norfolk, VA</option>
+<option value = 'Oakland'>Oakland, CA</option>
+<option value = 'Oklahoma City'>Oklahoma City, OK</option>
+<option value = 'Omaha'>Omaha, NE</option>
+<option value = 'Orlando'>Orlando, FL</option>
+<option value = 'Philadelphia'>Philadelphia, PA</option>
+<option value = 'Phoenix'>Phoenix, AZ</option>
+<option value = 'Pittsburgh'>Pittsburgh, PA</option>
+<option value = 'Portland'>Portland, OR</option>
+<option value = 'Raleigh'>Raleigh, NC</option>
+<option value = 'Richmond'>Richmond, VA</option>
+<option value = 'Rochester'>Rochester, NY</option>
+<option value = 'Sacramento'>Sacramento, CA</option>
+<option value = 'Salt Lake City'>Salt Lake City, UT</option>
+<option value = 'San Antonio'>San Antonio, TX</option>
+<option value = 'San Diego'>San Diego, CA</option>
+<option value = 'San Francisco'>San Francisco, CA</option>
+<option value = 'San Jose'>San Jose, CA</option>
+<option value = 'Santa Clara'>Santa Clara, CA</option>
+<option value = 'Seattle'>Seattle, WA</option>
+<option value = 'Somerville'>Somerville, MA</option>
+<option value = 'St Louis'>St Louis, MO</option>
+<option value = 'St Paul'>St Paul, MN</option>
+<option value = 'Sunnyvale'>Sunnyvale, CA</option>
+<option value = 'Tampa'>Tampa, FL</option>
+<option value = 'Tempe'>Tempe, AZ</option>
+<option value = 'Tucson'>Tucson, AZ</option>
+<option value = 'Tulsa'>Tulsa, OK</option>
+<option value = 'Washington'>Washington, DC</option>
+</select></p>
+<button id="myBtn">Graph</button>
+<div id = "graph"></div>
+
+<script type="text/javascript">
+  var myBtn = document.getElementById('myBtn');
+  myBtn.addEventListener('click', graphPictures);
+  function graphPictures() {
+  	 var pop = {'Albany':98424,'Arlington':379577,'Atlanta':447841,'Austin':885400,'Baltimore':622104,'Birmingham':212113,'Boston':645966,'Charlotte':792862,'Chicago':2719000,'Cleveland':390113,'Columbus':822553,'Dallas':1258000,'Denver':649495,'Durham':245475,'Honolulu':374658,'Houston':2196000,'Indianapolis':852866,'Irving':228653,'Kansas City':467007,'Las Vegas':603488,'Los Angeles':3884000,'Madison':243344,'Miami':417650,'Nashville':659042,'New Orleans':378715,'New York':8406000,'Newark':278427,'Norfolk':246139,'Oakland':406253,'Oklahoma City':610613,'Omaha':434353,'Orlando':255483,'Philadelphia':1553000,'Phoenix':1513000,'Pittsburgh':305841,'Portland':609456,'Raleigh':431746,'Richmond':214114,'Rochester':210358,'Sacramento':479686,'Salt Lake City':191180,'San Antonio':1409000,'San Diego':1356000,'San Francisco':837442,'San Jose':998537,'Santa Clara':120245,'Seattle':652405,'Somerville':78804,'St. Louis':318416,'St. Paul':294873,'Sunnyvale':147559,'Tampa':352957,'Tempe':168228,'Tucson':526116,'Tulsa':398121,'Washington':658893};
+  	var place = document.getElementById('place').value;
+  	var img_src = "static/Senior Design City Data/" +place+".png";
+  	$('#graph').empty();
+  	// $('#graph').append("<p>population</p>");
+  	// document.write(pop[place]);
+    $('#graph').append("<p>population: " +pop[place]+"</p>");
+  	$('#graph').append("<img src=\""+img_src+"\" height=\"70%\" width=\"80%\">");
+  }
+</script>

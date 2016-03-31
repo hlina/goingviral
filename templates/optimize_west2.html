@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Going Viral</title>
+    <title></title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -47,7 +47,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><a href="../../city_data">Flu Data by City</a></li>
+                <li><a href="../../city_data">Cities Flu Data</a></li>
                 <li><a href="../../heat_map">Heat Map</a></li>
                 <li><a href="../../optimization">Resource Allocation</a></li>
               </ul>
@@ -137,13 +137,12 @@ $(document).ready(function(){
     else if (model == 2) {
     future = {"Salt Lake City":[], "Las Vegas":[], "Seattle":[], "San Francisco":[], "Los Angeles":[]};
     original = {"Salt Lake City": dataOriginal["Salt Lake City, UT\""][year], "Las Vegas":dataOriginal["Las Vegas, NV\""][year], "Seattle": dataOriginal["Seattle, WA\""][year], "San Francisco": dataOriginal["San Francisco, CA\""][year], "Los Angeles": dataOriginal["Los Angeles, CA\""][year]};
-    betaMatrix =
-[[  0.445,  0.804846746665804,  -0.643002617950658, 0.0579622593435021, -0.408504718  ],
-[ -0.128206166156419, 0.155,  -0.708133840206999, 0.847752500288355,  -0.752097576  ],
-[ 0.331245309271534,  0.364869461239367,  0.6,  -0.214089062448374, -0.209385026  ],
-[ 0.199732351426501,  0.649438287455829,  -0.537848944693143, 0.535,  0.013186727 ],
-[ 0.0750179948228862, 0.239749828470651,  -0.453772201518043, 0.303901109177407,  0.695 ]];
-}
+    betaMatrix =[[      0.435,  0.204731856011406,      -1.1368803699606,       0.0484053623155896,     0.600548895     ],
+[       0.414947513346977,      0.045,  -0.377207751123023,     -0.167671707920857,     0.054248017     ],
+[       -0.151734445988848,     0.435614794228426,      0.5,    -0.207515592813455,     0.204236796     ],
+[       0.0062863520616975,     0.213564538609369,      -0.257942030054527,     0.16,   0.059927674     ],
+[       -0.0452634512765007,    0.615898555570022,      -0.845175238668378,     -0.0312804254676582,    0.2     ]];
+    }
     //solve for all the cities
     deltas = "{{ data[0] }}";
     deltas = deltas.split(",");
@@ -188,7 +187,7 @@ $(document).ready(function(){
 
 	function showGraphs() {
     setVariables();
-      naturals = {"Las Vegas": 0.445, "Los Angeles":0.155, "Salt Lake City":0.6, "San Francisco":0.535, "Seattle":0.695,"Austin":0.81, "Birmingham": 0.88, "Charlotte": 0.385, "Dallas": 0.235, "Nashville": 0.13, "Baltimore":0.6, "Boston": 0.475, "NYC": 0.475, "Philadelphia": 0.325, "Pittsburgh": 0.375, "Richmond": 0.45, "DC": 0.475};
+      naturals = {"Las Vegas": 0.435, "Los Angeles":0.045, "Salt Lake City":0.5, "San Francisco":0.16, "Seattle":0.2,"Austin":0.81, "Birmingham": 0.88, "Charlotte": 0.385, "Dallas": 0.235, "Nashville": 0.13, "Baltimore":0.6, "Boston": 0.475, "NYC": 0.475, "Philadelphia": 0.325, "Pittsburgh": 0.375, "Richmond": 0.45, "DC": 0.475};
 		model = {{ data[5] }};
 		 if (model == 0) {
     		cityNames = ["Baltimore","Boston","NYC","Philadelphia","Pittsburgh","Richmond","DC"];
@@ -252,7 +251,7 @@ $(document).ready(function(){
 	      labels: x_data,
 	      datasets: 
 	      [{
-	        label: city+" Without Allocation",
+	        label: city+" Before",
 	        fillColor: "rgba(149,44,44,0.5)",
 	        strokeColor: "#952C2C",
 	        pointColor: "#952C2C",
@@ -262,7 +261,7 @@ $(document).ready(function(){
 	        data: original[city]
 	      },
 	      {
-	        label: city + " With Allocation",
+	        label: city + " After",
 	        fillColor: "rgba(51,122,183,0.5)",
 	        strokeColor: "#337AB7",
 	        pointColor: "#337AB7",

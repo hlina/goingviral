@@ -127,7 +127,7 @@ $(document).ready(function(){
 		var chart = "<canvas id = \"myChart\" width = \"660\" height = \"600\"></canvas> <div id = \"js-legend\" class = \"chart-legend\"></div>";
 		$(".cityGraphs").append(chart);
 		var ctx = document.getElementById("myChart").getContext("2d");
-		var city = document.getElementById("cities").value;
+		var city = document.getElementById("cities").value.slice(0, -1);
 		var year = document.getElementById('year').value;
 		var budget = document.getElementById("budget").value;
 		x_data = dates[year];
